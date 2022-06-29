@@ -129,41 +129,45 @@ function App() {
     }
 
     return (
-        <div className={"overflow-auto bg-sky-200 mt-6 mb-6 ml-6 mr-6 fixed wh-full-minus-margin"}>
-            Armstrong Nums<br/>
-            (https://github.com/bob-greg/hw6)<br/><br/>
+        <div className={"overflow-auto bg-sky-200 mt-6 mb-6 ml-6 mr-6 fixed wh-full-minus-margin pl-1"}>
+            Armstrong Numbers!<br/>
+            https://github.com/bob-greg/hw6<br/><br/>
             Starting Number:
-            <TextBox defaultText={"0"} text={stIdx.toString(10)} customCss={""} onChange={str => {
-                let i = parseInt(str)
-                if (!isNaN(i)) {
-                    if (i > MAX_REPRESENTABLE_ARMSTRONG_NUM) {
-                        i = MAX_REPRESENTABLE_ARMSTRONG_NUM
+            <div className={"pl-3"}>
+                <TextBox defaultText={"0"} text={stIdx.toString(10)} customCss={"pl-1"} onChange={str => {
+                    let i = parseInt(str)
+                    if (!isNaN(i)) {
+                        if (i > MAX_REPRESENTABLE_ARMSTRONG_NUM) {
+                            i = MAX_REPRESENTABLE_ARMSTRONG_NUM
+                        }
+                        setStIdx(i)
+                        setEdIdx(Math.max(edIdx, i))
+                    } else {
+                        setStIdx(0)
+                        i = 0
                     }
-                    setStIdx(i)
-                    setEdIdx(Math.max(edIdx, i))
-                } else {
-                    setStIdx(0)
-                    i = 0
-                }
-                return i.toString(10)
-            }}/>
+                    return i.toString(10)
+                }}/>
+            </div>
             Ending Number:
-            <TextBox defaultText={"1000"} text={edIdx.toString(10)} customCss={""} onChange={str => {
-                let i = parseInt(str)
-                if (!isNaN(i) && i > stIdx) {
-                    if (i > MAX_REPRESENTABLE_ARMSTRONG_NUM) {
-                        i = MAX_REPRESENTABLE_ARMSTRONG_NUM
+            <div className={"pl-3"}>
+                <TextBox defaultText={"1000"} text={edIdx.toString(10)} customCss={"pl-1"} onChange={str => {
+                    let i = parseInt(str)
+                    if (!isNaN(i) && i > stIdx) {
+                        if (i > MAX_REPRESENTABLE_ARMSTRONG_NUM) {
+                            i = MAX_REPRESENTABLE_ARMSTRONG_NUM
+                        }
+                        setEdIdx(i)
+                    } else {
+                        setEdIdx(stIdx)
+                        i = stIdx
                     }
-                    setEdIdx(i)
-                } else {
-                    setEdIdx(stIdx)
-                    i = stIdx
-                }
-                return i.toString(10)
-            }}/>
+                    return i.toString(10)
+                }}/>
+            </div>
             <br/>
             Armstrong Nums in {stIdx}..{edIdx}:
-            <ul className={"list-disc list-inside"}>
+            <ul className={"list-disc list-inside pl-3"}>
             {
                 getNumsOptimized(16, stIdx, edIdx).map(num => <li key={num}>{num}</li>)
             }
