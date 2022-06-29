@@ -129,7 +129,9 @@ function App() {
     }
 
     return (
-        <div className={"overflow-auto bg-sky-200"}>
+        <div className={"overflow-auto bg-sky-200 mt-6 mb-6 ml-6 mr-6 fixed wh-full-minus-margin"}>
+            Armstrong Nums<br/>
+            (https://github.com/bob-greg/hw6)<br/><br/>
             Starting Number:
             <TextBox defaultText={"0"} text={stIdx.toString(10)} customCss={""} onChange={str => {
                 let i = parseInt(str)
@@ -159,10 +161,11 @@ function App() {
                 }
                 return i.toString(10)
             }}/>
-            Armstrong Numbers between {stIdx} and {edIdx}:
-            <ul>
+            <br/>
+            Armstrong Nums in {stIdx}..{edIdx}:
+            <ul className={"list-disc list-inside"}>
             {
-                getNumsOptimized(16, stIdx, edIdx).map(num => <div key={num}>{num}</div>)
+                getNumsOptimized(16, stIdx, edIdx).map(num => <li key={num}>{num}</li>)
             }
             </ul>
         </div>
